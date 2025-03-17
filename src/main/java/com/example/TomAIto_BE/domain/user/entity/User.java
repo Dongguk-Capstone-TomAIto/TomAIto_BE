@@ -28,8 +28,6 @@ public class User {
 
     private String nickname;
 
-    private String email;
-
     @CreatedDate
     private LocalDate createdAt;
 
