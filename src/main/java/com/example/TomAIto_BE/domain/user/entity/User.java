@@ -1,9 +1,6 @@
 package com.example.TomAIto_BE.domain.user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.auditing.config.AuditingConfiguration;
@@ -19,14 +16,16 @@ import java.time.LocalDate;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
 
     private String username;
 
-    private String password;
+    private String role;
 
-    private String nickname;
+    private String email;
 
     @CreatedDate
     private LocalDate createdAt;
