@@ -1,12 +1,9 @@
 package com.example.TomAIto_BE.domain.history.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.example.TomAIto_BE.domain.user.entity.User;
+import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.auditing.config.AuditingConfiguration;
 
@@ -23,12 +20,12 @@ public class History {
     @GeneratedValue
     private Long id;
 
-    private Long result;
-
-    private String image;
-
-    private boolean pest;
+    private String result;
 
     @CreatedDate
     private LocalDate createdAt;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }
