@@ -21,12 +21,13 @@ public class KakaoResponseDto implements OAuth2Response{
 
     @Override
     public String getEmail() {
-        Map<String, Object> properties = (Map<String, Object>) attribute.get("properties");
-        return properties.get("nickname").toString();
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
+        return kakaoAccount.get("email").toString();
     }
 
     @Override
     public String getName() {
-        return "";
+        Map<String, Object> properties = (Map<String, Object>) attribute.get("properties");
+        return properties.get("nickname").toString();
     }
 }

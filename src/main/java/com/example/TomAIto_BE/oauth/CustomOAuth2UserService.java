@@ -12,6 +12,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 
 // 결국 엑세스토큰으로 사용자 정보받아서 db에 존재하는 사용자인지 확인하고 아니면 회원가입하는  '소셜로그인'과정.
 @Service
@@ -55,6 +57,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                     .email(oAuth2Response.getEmail())
                     .name(oAuth2Response.getName())
                     .role("ROLE_USER")
+                    .createdAt(LocalDate.now())
                     .build();
             userRepository.save(user);
 
