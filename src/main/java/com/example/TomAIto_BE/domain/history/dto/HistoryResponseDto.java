@@ -1,6 +1,7 @@
 package com.example.TomAIto_BE.domain.history.dto;
 
 import com.example.TomAIto_BE.domain.history.entity.History;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
 import java.time.LocalDate;

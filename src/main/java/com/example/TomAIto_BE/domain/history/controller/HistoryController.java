@@ -5,6 +5,7 @@ import com.example.TomAIto_BE.domain.history.dto.HistoryRequestDto;
 import com.example.TomAIto_BE.domain.history.dto.HistoryResponseDto;
 import com.example.TomAIto_BE.domain.history.service.HistoryService;
 import com.example.TomAIto_BE.oauth.CustomOAuth2User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class HistoryController {
     private final HistoryService historyService;
 
     @PostMapping("")
-    public void saveHistory(@AuthenticationPrincipal CustomOAuth2User user, @RequestBody HistoryRequestDto.saveHistory saveHistory ) {
+    public void saveHistory(@AuthenticationPrincipal CustomOAuth2User user, @Valid @RequestBody HistoryRequestDto.saveHistory saveHistory ) {
         historyService.saveHistory(user.getUsername(), saveHistory);
     }
 
