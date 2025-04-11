@@ -1,6 +1,7 @@
 package com.example.TomAIto_BE.domain.history.controller;
 
 
+import com.example.TomAIto_BE.common.ApiResponse;
 import com.example.TomAIto_BE.domain.history.dto.HistoryRequestDto;
 import com.example.TomAIto_BE.domain.history.dto.HistoryResponseDto;
 import com.example.TomAIto_BE.domain.history.service.HistoryService;
@@ -19,13 +20,13 @@ public class HistoryController {
     private final HistoryService historyService;
 
     @PostMapping("")
-    public void saveHistory(@AuthenticationPrincipal CustomOAuth2User user, @Valid @RequestBody HistoryRequestDto.saveHistory saveHistory ) {
-        historyService.saveHistory(user.getUsername(), saveHistory);
+    public ApiResponse<HistoryResponseDto.saveDto> saveHistory(@AuthenticationPrincipal CustomOAuth2User user, @Valid @RequestBody HistoryRequestDto.saveHistory saveHistoryDto ) {
+        return ApiResponse.onSuccess(historyService.saveHistory(user.getUsername(), saveHistoryDto));
     }
 
 
     @GetMapping("")
-    public List<HistoryResponseDto.HistoryDto> getHistory(@AuthenticationPrincipal CustomOAuth2User user) {
-        return historyService.getHistoryList(user.getUsername());
+    public ApiResponse<List<HistoryResponseDto.HistoryDto>> getHistory(@AuthenticationPrincipal CustomOAuth2User user) {
+        return ApiResponse.onSuccess(historyService.getHistoryList(user.getUsername()));
     }
 }

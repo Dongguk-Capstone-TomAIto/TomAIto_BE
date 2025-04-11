@@ -9,6 +9,11 @@ import java.util.List;
 
 public class HistoryResponseDto {
     @Builder
+    public static class saveDto{
+        private LocalDate createdAt;
+        private String result;
+    }
+    @Builder
     public static class HistoryDto {
         private LocalDate createdAt;
         private String result;

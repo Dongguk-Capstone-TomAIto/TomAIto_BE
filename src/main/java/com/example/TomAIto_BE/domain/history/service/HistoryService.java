@@ -24,7 +24,7 @@ public class HistoryService {
     private final HistoryRepository historyRepository;
     private final UserRepository userRepository;
 
-    public void saveHistory(String username, HistoryRequestDto.saveHistory saveHistory) {
+    public HistoryResponseDto.saveDto saveHistory(String username, HistoryRequestDto.saveHistory saveHistory) {
         User user = userRepository.findByUsername(username);
         History history = History.builder()
                 .result(saveHistory.getResult())
@@ -32,6 +32,10 @@ public class HistoryService {
                 .user(user)
                 .build();
         historyRepository.save(history);
+        return HistoryResponseDto.saveDto.builder()
+                .result(history.getResult())
+                .createdAt(history.getCreatedAt())
+                .build();
     }
 
     public List<HistoryResponseDto.HistoryDto> getHistoryList(String username) {
