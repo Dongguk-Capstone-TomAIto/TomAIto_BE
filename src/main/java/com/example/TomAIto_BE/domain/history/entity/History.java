@@ -22,6 +22,8 @@ public class History {
 
     private String result;
 
+    private String type;
+
     @CreatedDate
     private LocalDate createdAt;
 

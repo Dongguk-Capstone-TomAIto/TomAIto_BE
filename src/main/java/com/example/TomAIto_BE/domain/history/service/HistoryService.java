@@ -28,12 +28,14 @@ public class HistoryService {
         User user = userRepository.findByUsername(username);
         History history = History.builder()
                 .result(saveHistory.getResult())
+                .type(saveHistory.getType())
                 .createdAt(LocalDate.now())
                 .user(user)
                 .build();
         historyRepository.save(history);
         return HistoryResponseDto.saveDto.builder()
                 .result(history.getResult())
+                .type(history.getType())
                 .createdAt(history.getCreatedAt())
                 .build();
     }

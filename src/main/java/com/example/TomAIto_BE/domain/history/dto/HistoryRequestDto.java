@@ -6,6 +6,10 @@ import lombok.Getter;
 public class HistoryRequestDto {
     @Getter
     public static class saveHistory{
+
+        @NotBlank
+        String type;
+
         @NotBlank
         String result;
     }
